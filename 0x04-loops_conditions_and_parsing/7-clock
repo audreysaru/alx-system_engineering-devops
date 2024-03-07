@@ -16,7 +16,7 @@ do
 	while [ $minute -le 59 ]
 	do
 		# Display the current time in HH:MM format
-		printf "%02d\n" $minute
+		printf "%2d\n" $minute
 
 		# Increment minute
 		((minute++))
