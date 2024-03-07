@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# This script signals termination of the process named 7-highlander.
+
+# Define the signal file
+signal_file="/tmp/terminate_highlander_signal"
+
+# Remove any existing signal file
+rm -f "$signal_file"
+
+# Signal the other script to terminate the process
+touch "$signal_file"
+
+# Wait for the process to terminate
+while [ -e "$signal_file" ]; do
+	sleep 1
+done
+
+echo "Process terminated."

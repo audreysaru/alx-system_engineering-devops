@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This script displays "To infinity and beyond" indefinitely with a sleep 2 in between each iteration.
+# It checks for the termination file and exits gracefully if found.
+
+# Define the termination file
+terminate_file="/tmp/terminate_infinity"
+
+# Infinite loop with sleep between iterations
+while true; do
+	echo "To infinity and beyond"
+	sleep 2
+
+	# Check for the termination file and terminate if found
+	if [ -e "$terminate_file" ]; then
+		echo "I am invincible!!!"
+		rm -f "$terminate_file"  # Clean up the termination file
+		exit 0
+	fi
+done

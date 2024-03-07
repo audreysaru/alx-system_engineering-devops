@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# This script signals the termination of the 4-to_infinity_and_beyond process running in terminal 1 using kill.
+# It requires user confirmation.
+
+# Get the Process ID (PID) of the 4-to_infinity_and_beyond process
+process_pid=$(pgrep -f "4-to_infinity_and_beyond")
+
+# Check if the process is running
+if [ -n "$process_pid" ]; then
+	echo "Stopping the 4-to_infinity_and_beyond process with PID $process_pid"
+
+	# Prompt user for confirmation
+	read -p "Press Enter to initiate termination."
+
+	# Use kill to send a SIGTERM signal
+	kill -USR1 "$process_pid"
+
+	echo "Process termination initiated."
+else
+	echo "The 4-to_infinity_and_beyond process is not currently running."
+fi
