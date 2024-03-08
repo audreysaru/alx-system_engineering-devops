@@ -2,4 +2,4 @@
 # This script displays the PID and process name of processes whose name contains the word "bash".
 
 # Use pgrep to find processes by name
-pgrep -af bash
+pgrep -l bash

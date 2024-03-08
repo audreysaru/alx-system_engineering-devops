@@ -2,14 +2,4 @@
 # This script signals the termination of the 7-highlander process running in terminal 1.
 # It requires user confirmation.
 
-# Define the termination file
-terminate_file="/tmp/terminate_infinity"
-
-# Prompt user for confirmation
-echo "Press Enter to initiate termination."
-read -r
-
-# Signal the other script to terminate the process by creating the termination file
-echo "Termination initiated." > "$terminate_file"
-
-echo "Termination signal sent."
+pgrep -f 7-highlander | xargs kill -9
