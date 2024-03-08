@@ -5,7 +5,7 @@
 hour=0
 
 # Use a while loop to iterate through hours
-while [ $hour -le 23 ]
+while [ $hour -le 12 ]
 do
 	minute=1
 
@@ -13,7 +13,7 @@ do
 	echo "Hour: $hour"
 
 	# Use a nested while loop to iterate through minutes
-	while [ $minute -le 59 ]
+	while [ $minute -le 60 ]
 	do
 		# Display the current time in HH:MM format
 		printf "%2d\n" $minute
