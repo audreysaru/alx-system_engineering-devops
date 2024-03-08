@@ -10,11 +10,8 @@ fi
 # Extract the IP address from the command line argument
 ip_address=$1
 
-# Ping the IP address 5 times
-ping -c 5 "$ip_address"
-
 # Check the exit status of the ping command
-if [ $? -eq 0 ]; then
+if ping -c 5 "$ip_address"; then
 	echo "The host at $ip_address is reachable on the network."
 else
 	echo "The host at $ip_address is not reachable on the network."

@@ -1,25 +1,13 @@
 #!/usr/bin/env bash
 # Display listening ports and corresponding processes
 
-# Use netstat to list listening sockets with PID and program name
-listening_info=$(netstat -tulnp 2>/dev/null | awk '/LISTEN/ {print $1, $4, $7}' | sed 's/.*://')
+# Use netstat to list listening sockets with PID and process name
+listening_info=$(netstat -tulpn 2>/dev/null | awk '$6 == "LISTEN" {print $1, $4, $NF}')
 
 # Check if the netstat command was successful
 if [ $? -eq 0 ]; then
-	# Display the header
-	echo "Active Internet connections (only servers)"
-	echo "Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name"
-  
 	# Display the listening information
 	echo "$listening_info"
-
-	# Display Active UNIX domain sockets (only servers) header
-	echo "Active UNIX domain sockets (only servers)"
-	echo "Proto RefCnt Flags       Type       State         I-Node   PID/Program name    Path"
-
-	# Use netstat to list UNIX domain sockets with PID and program name
-	unix_listening_info=$(netstat -lxup --unix 2>/dev/null | awk '/LISTEN/ {print $1, $5, $6, $7, $8, $9}' | sed 's/.*://')
-	echo "$unix_listening_info"
 else
 	echo "Error: Unable to retrieve listening ports."
 fi
