@@ -7,7 +7,7 @@ listening_info=$(netstat -tulpn 2>/dev/null | awk '$6 == "LISTEN" {print $1, $4,
 # Check if the netstat command was successful
 if [ $? -eq 0 ]; then
 	# Display the listening information
-	echo "$listening_info"
+	printf "%s" "$listening_info"
 else
 	echo "Error: Unable to retrieve listening ports."
 fi
